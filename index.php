@@ -1,0 +1,149 @@
+<?php
+session_start();
+if (!isset($_SESSION['username'])) {
+    header("Location: login.html");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Islamic Knowledge Quiz</title>
+  
+  <!-- Favicon for browser tab -->
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  
+  <!-- Bootstrap CSS for styling -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom CSS for quiz-specific styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+
+  
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-dark shadow-sm" id="mainNavbar">
+    <div class="container d-flex justify-content-between align-items-center">
+      
+      <div style="width: 80px;"></div> 
+  
+      <div class="d-flex align-items-center">
+        <img src="images/islamicquiz.jpg" alt="Quiz Logo" style="height:50px; margin-right:15px;">
+        <span class="navbar-brand mb-0 h1">Islamic Knowledge Quiz</span>
+      </div>
+  
+      <a href="logout.php" class="btn btn-danger btn-sm">Logout</a>
+      
+    </div>
+  </nav>
+  
+  <!-- Welcome / Category Selection Screen -->
+  <div class="container mt-5" id="welcomeScreen">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card p-4 text-center shadow">
+          <h2 class="text-primary">Islamic Quiz Challenge!</h2>
+          <p class="text-muted">Test your knowledge of the Pillars, Prophets, and Quran.</p>
+          
+          <!-- Buttons to select quiz category -->
+          <div class="d-grid gap-2 mt-4">
+            <button class="btn btn-custom py-2" onclick="startQuiz('pillars')">Pillars of Islam</button>
+            <button class="btn btn-custom py-2" onclick="startQuiz('prophets')">Prophets</button>
+            <button class="btn btn-custom py-2" onclick="startQuiz('quran')">Quran</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quiz Screen -->
+  <div class="container mt-4" id="quizScreen" style="display:none; opacity:1;">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+
+        <!-- Progress bar -->
+        <div class="mb-4">
+          <div class="d-flex justify-content-between mb-1">
+            <small id="progressText" class="fw-bold">Question 1 of 7</small>
+            <small id="progressPercent" class="text-primary fw-bold">0%</small>
+          </div>
+          <div class="progress" style="height: 12px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" id="progressBar" role="progressbar" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Question card -->
+        <div class="card shadow-sm p-4">
+          <!-- Question text -->
+          <h4 id="questionText" class="mb-4"></h4>
+          
+          <!-- Options will be dynamically inserted here -->
+          <div id="options" class="d-grid gap-3"></div>
+
+          <!-- Explanation shown after answering -->
+          <div id="explanation" class="alert mt-4" style="display:none;" role="alert"></div>
+
+          <!-- Next button and loading spinner -->
+          <div class="d-flex justify-content-between align-items-center mt-4">
+            <!-- Loading spinner shown while transitioning -->
+            <div id="loading" style="display:none;">
+              <div class="spinner-border text-primary spinner-border-sm" role="status"></div>
+              <span class="ms-2 small text-muted">Loading next...</span>
+            </div>
+            
+            <!-- Next question button -->
+            <button id="nextBtn" class="btn btn-primary px-4" style="display:none;" onclick="nextQuestion()">
+              Next Question →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Result Screen -->
+  <div class="container mt-5" id="resultScreen" style="display:none;">
+    <div class="row justify-content-center text-center">
+      <div class="col-md-8">
+        <!-- Final score alert -->
+        <div class="alert alert-success shadow-sm">
+          <h3 id="finalScore" class="alert-heading"></h3>
+          <p id="percentageScore" class="mb-0 fw-bold"></p>
+        </div>
+
+        <!-- High scores and summary -->
+        <div class="card shadow-sm mb-4">
+          <div class="card-body">
+            <!-- Display high scores for each category -->
+            <div id="highScoresText" class="mb-3 text-primary"></div>
+            <hr>
+            <!-- Summary of correct answers -->
+            <div id="answerSummary" class="text-start"></div>
+          </div>
+        </div>
+
+        <!-- Retry quiz / select new category buttons -->
+        <div class="d-flex justify-content-center gap-3 mb-5">
+          <button onclick="resetQuiz()" class="btn btn-primary px-4">Retry Quiz</button>
+          <button onclick="showCategorySelection()" class="btn btn-secondary px-4">New Category</button>
+        </div>
+
+        <!-- Button to clear all saved high scores -->
+        <button onclick="localStorage.clear(); location.reload();" class="btn btn-link text-danger btn-sm text-decoration-none">
+          Reset All Saved Scores
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JS for quiz functionality -->
+  <script src="script.js"></script>
+</body>
+</html>

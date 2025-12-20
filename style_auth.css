@@ -1,0 +1,56 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.auth-container {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    width: 350px;
+    text-align: center;
+}
+
+h2 { color:  #2e7d32; margin-bottom: 20px; }
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box; /* Makes sure padding doesn't break width */
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    /* Added transition for smooth scaling */
+    transition: all 0.2s ease-in-out; 
+}
+
+button:hover {
+    background-color: #1b5e20;
+    /* Your requested scale effect */
+    transform: scale(1.05);
+    /* Adds depth when the button pops up */
+    box-shadow: 0 5px 15px rgba(46, 125, 50, 0.3);
+}
+
+/* Optional: Adds a slight "click" effect when pressed */
+button:active {
+    transform: scale(0.98);
+}
