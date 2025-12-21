@@ -77,19 +77,30 @@ The application utilizes a 3-Tier Client-Server Architecture:
 ## 5️⃣ Project Folder Structure
 
 ```text
-islamic_quiz/
+islamic_quiz/  
 │
-├── index.php          # Main quiz page (Session protected)
-├── login.php          # User login processing logic
-├── signup.php         # User registration logic
-├── logout.php         # Session destruction & redirect
-├── db.php             # Centralized Database connection
-├── style.css          # Main quiz page styling
-├── style_auth.css     # Login/Signup page styling
-├── script.js          # JavaScript Quiz engine
-├── README.md          # Project documentation
-└── images/            # Assets folder
-    └── islamicquiz.jpg
+├── images/                # Assets folder
+│   ├── islamicquiz.jpg    # Main logo for the quiz
+│   
+│
+├── db.php                 # Centralized Database connection
+│
+├── signup.html            # User registration interface
+├── signup.php             # User registration logic (Backend)
+│
+├── login.html             # User login interface
+├── login.php              # User login processing logic (Backend)
+│
+├── index.php              # Main quiz dashboard (Session protected)
+├── logout.php             # Session destruction & redirect
+│
+├── script.js              # JavaScript Quiz engine (The "Brain")
+│
+├── style.css              # Main quiz page styling
+├── style_auth.css         # Login/Signup page styling
+│
+└── README.md              # Project documentation
+
 
 ```
 
@@ -153,5 +164,6 @@ Secure authentication using PHP sessions
 Interactive quiz logic using JavaScript
 Responsive UI using Bootstrap
 Persistent data storage using MySQL
+
 
 
